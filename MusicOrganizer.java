@@ -39,7 +39,8 @@ public class MusicOrganizer
     {
         return files.size();
     }
-    
+
+
     /**
      * List a file from the collection.
      * @param index The index of the file to be listed.
@@ -59,6 +60,16 @@ public class MusicOrganizer
     {
         for(String filename : files) {
             System.out.println(filename);
+        }
+    }
+    
+    public void listWithIndex()
+    {
+        int position = 0;
+        for(String filename : files)
+        {
+            System.out.println(position + " : " + filename);
+            position++;
         }
     }
     
@@ -130,5 +141,52 @@ public class MusicOrganizer
             valid = true;
         }
         return valid;
+    }
+    
+    public void listMatching(String searchString)
+    {
+        boolean found = false;
+        for(String filename : files)
+        {
+            if(filename.contains(searchString))
+            {
+                //A match
+                System.out.println(filename);
+                found = true;
+            }
+        }
+        if(!found)
+        {
+            System.out.println("no files not found!");
+        }
+    }
+    
+    public void PlayArtistTracks(String searchArtist)
+    {
+        boolean found = false;
+        for(String filename : files)
+        {
+            if(filename.contains(searchArtist))
+            {
+                //A match
+                System.out.println("Playing Lisa Album");
+                
+                player.playSample("Studio Lisa-Avant Guardian.mp3");
+                player.playSample("Studio Lisa-The Falcon.mp3");
+                player.playSample("Lisa Davies-Burning Man.mp3");
+                player.playSample("Lisa Davies-Livid.mp3");
+                player.playSample("Lisa Davies-Maverick.mp3");
+                
+                System.out.println("End of album");
+                
+                found = true;
+            }
+                
+        }
+        
+        if(!found)
+        {
+            System.out.println("no tracks not found!");
+        }
     }
 }
